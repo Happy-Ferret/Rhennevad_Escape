@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<main>
+	<pageconf BGimg="1" BGM="0">
+		<title>Intro Cinematic</title>
+		<BG>backdrop.jpg</BG>
+		<BGM>BGM1.ogg</BGM>
+	</pageconf>
+	<forks>
+	</forks>
+	<core>
+	</core>
+</main>
