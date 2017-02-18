@@ -5,7 +5,7 @@
 	<beginref>mainmenu.xml</beginref>
 	<initkeys>
 	</initkeys>
-	<debug debug="1" printkeys="1" clickfields="1" cfcolor="#FFFF00"/>
+	<debug debug="1" printkeys="1" clickfields="0" cfcolor="#FFFF00"/>
 	<globalforks>
 	</globalforks>
 	<globalcore>

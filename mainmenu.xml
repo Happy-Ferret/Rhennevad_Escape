@@ -12,15 +12,15 @@
 			<con>Powered By: Desutezeoid v1.2.0</con>
 			<act type="none"/>
 		</label>
-		<label x="20" y="390" size="25" transp="1" FGCOLOR="#000000">
+		<label x="20" y="390" size="25" transp="1" FGCOLOR="#000088">
 			<con>Choose Chapter</con>
 			<act type="none"/>
 		</label>
-		<label x="20" y="420" size="25" transp="1" FGCOLOR="#000000">
+		<label x="20" y="420" size="25" transp="1" FGCOLOR="#000088">
 			<con>About</con>
 			<act type="iref" ref="about.xml"/>
 		</label>
-		<label x="20" y="450" size="25" transp="1" FGCOLOR="#000000">
+		<label x="20" y="450" size="25" transp="1" FGCOLOR="#000088">
 			<con>Quit</con>
 			<act type="quit"/>
 		</label>

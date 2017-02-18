@@ -12,8 +12,8 @@
 			<con>Rhennevad Escape</con>
 			<act type="none"/>
 		</label>
-		<label x="20" y="430" size="25" transp="1" FGCOLOR="#000000">
-			<con>Return Main Menu</con>
+		<label x="20" y="430" size="25" transp="1" FGCOLOR="#000088">
+			<con>Main Menu</con>
 			<act type="iref" ref="mainmenu.xml"/>
 		</label>
 		<!--notice how the "text" object has similar attributes to the label tag, but lacking click and hover related, attribues. It still has onkey and offkey though. do note this can take longer to process than other core objects.-->
