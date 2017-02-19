@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<main>
+	<pageconf BGimg="1" BGM="0">
+		<title>Lost at Sea</title>
+		<BG>backdrop.jpg</BG>
+		<BGM>BGM1.ogg</BGM>
+	</pageconf>
+	<forks>
+		<!--windowlogic-->
+		<timeout keyid="clickwindow" seconds="3.0"/>
+		<ortrig keyid="windowhint">
+			<k if="1" keyid="windowhintA"/>
+			<k if="1" keyid="windowhintB"/>
+		</ortrig>
+		<!--bedlogic-->
+		<timeout keyid="clickbed" seconds="4.0"/>
+		<timeout keyid="clickfox" seconds="4.0"/>
+		
+	</forks>
+	<core>
+		<img x="0" y="0">
+			<con>boatbunks1.jpg</con>
+			<act type="none"/>
+		</img>
+		<!--Clickable objects-->
+		<box x="100" y="78" sfxclick="1" sound="bunsoundasleep.ogg" sizex="142" sizey="98" COLOR="#FF0000" alpha="0" hoverkey="bedhint" keyid="clickbed">
+			<act type="key"/>
+		</box>
+		<box x="266" y="15" sfxclick="1" sound="bunsunnyday.ogg" sizex="87" sizey="45" COLOR="#FF0000" alpha="0" hoverkey="windowhintA" keyid="clickwindow">
+			<act type="key"/>
+		</box>
+		<box x="373" y="18" sfxclick="1" sound="bunsunnyday.ogg" sizex="87" sizey="45" COLOR="#FF0000" alpha="0" hoverkey="windowhintB" keyid="clickwindow">
+			<act type="key"/>
+		</box>
+		<box x="569" y="4" sfxclick="1" sound="bunsunnyday.ogg" sizex="44" sizey="41" COLOR="#FF0000" alpha="0" hoverkey="foxhint" keyid="clickfox">
+			<act type="key"/>
+		</box>
+		<!--hover hints-->
+		<text x="20" y="390" size="24" onkey="bedhint" transp="1" FGCOLOR="#003300">Look at bed.</text>
+		<text x="20" y="390" size="24" onkey="windowhint" transp="1" FGCOLOR="#003300">Look out window.</text>
+		<text x="20" y="390" size="24" onkey="foxhint" transp="1" FGCOLOR="#003300">Look at Drake Temalson</text>
+		<!--bunspeech-->
+		<text x="20" y="390" size="24" onkey="clickbed" BGCOLOR="#000000" FGCOLOR="#FFAAAA">I was sound asleep, next thing i know im shipwrecked.</text>
+		<text x="20" y="390" size="24" onkey="clickwindow" BGCOLOR="#000000" FGCOLOR="#FFAAAA">On the bright side, at least its a sunny day.</text>
+		<text x="20" y="390" size="24" onkey="clickfox" BGCOLOR="#000000" FGCOLOR="#FFAAAA">Oh, i was wondering where old Drake got off to...</text>
+	</core>
+</main>

@@ -36,5 +36,32 @@ GNU General Public License for more details.
        
 You should have received a copy of the GNU General Public License
 along with Rhennevad Escape.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</text>
+
+		<text x="520" y="35" size="20" transp="1" FGCOLOR="#000000">Gretra Temalson (Rabbit)
+Voiced by: Thomas Leathers
+
+
+
+
+
+
+Drake Temalson (fox)
+Voiced By: Thomas Leathers
+
+
+
+
+
+
+
+Narrator voiced by: Thomas Leathers</text>
+		<img x="520" y="75">
+			<con>bunface1.png</con>
+			<act type="none"/>
+		</img>
+		<img x="520" y="235">
+			<con>foxface1.png</con>
+			<act type="none"/>
+		</img>
 	</core>
 </main>

@@ -5,9 +5,14 @@
 	<beginref>mainmenu.xml</beginref>
 	<initkeys>
 	</initkeys>
-	<debug debug="1" printkeys="1" clickfields="0" cfcolor="#FFFF00"/>
+	<debug debug="1" printkeys="1" clickfields="1" cfcolor="#FFFF00"/>
 	<globalforks>
 	</globalforks>
 	<globalcore>
+		<!--Development shortcuts-->
+		<label x="650" y="550" size="25" transp="1" FGCOLOR="#000088">
+			<con>DEV_JUMP to chapter select.</con>
+			<act type="iref" ref="chaptsel.xml"/>
+		</label>
 	</globalcore>
 </conf>
