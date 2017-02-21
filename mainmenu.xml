@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <main>
-	<pageconf BGimg="1" BGM="0">
+	<pageconf BGimg="1" BGMstop="0" BGM="0">
 		<title>Main Menu</title>
 		<BG>backdrop.jpg</BG>
 		<BGM>BGM1.ogg</BGM>

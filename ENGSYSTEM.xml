@@ -2,8 +2,9 @@
 <conf>
 	<screen x="800" y="600"/>
 	<title base="Rhennevad Escape | " />
-	<beginref>mainmenu.xml</beginref>
+	<beginref>prestart.xml</beginref>
 	<initkeys>
+		<k keyid="prestart"/>
 	</initkeys>
 	<debug debug="1" printkeys="1" clickfields="1" cfcolor="#FFFF00"/>
 	<globalforks>
