@@ -13,11 +13,24 @@ import xml.etree.ElementTree as ET
 pygame.display.init()
 pygame.font.init()
 pygame.mixer.init()
-print "Desutezeoid arbitrary point and click engine v1.2.0"
+print "Desutezeoid arbitrary point and click engine v1.2.2"
 print "parsing ENGSYSTEM.xml"
 conftree = ET.parse("ENGSYSTEM.xml")
 confroot = conftree.getroot()
 screentag=confroot.find("screen")
+uitag=confroot.find("ui")
+uicolorstag=uitag.find("main")
+uifgcolor=pygame.Color(uicolorstag.attrib.get("FGCOLOR", "#000000"))
+uibgcolor=pygame.Color(uicolorstag.attrib.get("BGCOLOR", "#FFFFFF"))
+uifgcolorstr=uicolorstag.attrib.get("FGCOLOR", "#000000")
+uibgcolorstr=uicolorstag.attrib.get("BGCOLOR", "#FFFFFF")
+uitextsize=int(uicolorstag.attrib.get("textsize", "24"))
+
+uiquittag=uitag.find("quit")
+uiquitmsg=uiquittag.attrib.get("MSG", "Are you sure you want to quit?")
+
+
+
 print "populate keylist with null keyid, add any keys in initkeys."
 initkeystag=confroot.find("initkeys")
 keylist=list(["0"])
@@ -38,10 +51,15 @@ beginref=(confroot.find("beginref")).text
 
 globalcoretag=confroot.find("globalcore")
 globalforkstag=confroot.find("globalforks")
+icontag=titletag.attrib.get("icon", "NULL")
+if icontag!="NULL":
+	windowicon=pygame.image.load(icontag)
+	pygame.display.set_icon(windowicon)
+	
 print "config parsed."
 titlebase=titletag.attrib.get("base", "Desutezeoid: ")
 class clicktab:
-	def __init__(self, box, reftype, ref, keyid, takekey, sfxclick, sound):
+	def __init__(self, box, reftype, ref, keyid, takekey, sfxclick, sound, quitab=0):
 		self.box=box
 		self.ref=ref
 		self.keyid=keyid
@@ -49,12 +67,24 @@ class clicktab:
 		self.reftype=reftype
 		self.sfxclick=sfxclick
 		self.sound=sound
+		self.quitab=quitab
 class timeouttab:
 	def __init__(self, seconds, keyid, postkey):
 		self.keyid=keyid
 		self.regtime=time.time()
 		self.seconds=seconds
 		self.postkey=postkey
+
+class uimenutab:
+	def __init__(self, con, keyid, stay=0, noact=0, surfrender=None):
+		self.keyid=keyid
+		self.con=con
+		self.surfrender=surfrender
+		self.stay=stay
+		self.noact=noact
+
+
+
 
 #class keyobj:
 #	def __init__(self, keyid):
@@ -74,11 +104,131 @@ screensurf=pygame.display.set_mode((scrnx, scrny))
 quitflag=0
 clicklist=list()
 
+#menu dialog function
+def qmenu(xpos, ypos, itemlist, fgcol=uifgcolor, bgcol=uibgcolor, uipoptextsize=uitextsize):
+	qfnt=pygame.font.SysFont(None, uipoptextsize)
+	texty=3
+	textx=100
+	itemlistB=list()
+	for itm in itemlist:
+		texty += uipoptextsize
+		if itm.noact==1:
+			qtext1=qfnt.render(itm.con, True, fgcol, bgcol)
+		else:
+			qtext1=qfnt.render(itm.con, True, bgcol, fgcol)
+		#print itm.con
+		itmB=uimenutab(itm.con, itm.keyid, itm.stay, itm.noact, qtext1)
+		if (qtext1.get_width())>textx:
+			textx=qtext1.get_width()
+		itemlistB.extend([itmB])
+	
+	xpos=((xpos - int(textx / 2)) - 3)
+	ypos=((ypos - int(texty / 2)) - 3)
+	qboxwidth=(6 + textx)
+	qboxhight=(texty + 20)
+	if qboxwidth<100:
+		qboxwidth=100
+	qbox=pygame.Surface((qboxwidth, qboxhight))
+	qbox.fill((bgcol))
+	boxtrace=screensurf.blit(qbox, (xpos, ypos))
+
+	
+	texreny=(ypos + 3)
+	texrenx=(xpos + 3)
+	retlist=list()
+	for itm in itemlistB:
+		itmclick=screensurf.blit(itm.surfrender, (texrenx, (texreny)))
+		texreny += uipoptextsize
+		if itm.noact==0:
+			if itm.stay==0:
+				itmclicktab=clicktab(itmclick, "key", "none", itm.keyid, "0", 0, "none", quitab=3)
+			else:
+				itmclicktab=clicktab(itmclick, "key", "none", itm.keyid, "0", 0, "none")
+			retlist.extend([itmclicktab])
+	#screensurf.blit(qtext1, ((xpos + 3), (ypos + 3)))
+	pygame.draw.rect(screensurf, fgcol, boxtrace, 3)
+	return(retlist)
+
+	
+
+
+#simple dialog popup generator. used by uipop forks and the engine quit dialogs.
+def qpop(qmsg, xpos, ypos, keyid="0", nokey="0", quyn=0, specialquit=0, fgcol=uifgcolor, bgcol=uibgcolor, uipoptextsize=uitextsize, img="none"):
+	qfnt=pygame.font.SysFont(None, uipoptextsize)
+	if img!="none":
+		qimg=pygame.image.load(img)
+		qimgflg=1
+		qimgy=qimg.get_height()
+		qimgx=qimg.get_width()
+	else:
+		qimgflg=0
+		qimgy=0
+		qimgx=0
+	prevxpos=xpos
+	qtext1=qfnt.render(qmsg, True, fgcol, bgcol)
+	xpos=((xpos - int(qtext1.get_width() / 2)) - 3)
+	if qimgflg==1:
+		#if image is present, center ypos on image
+		ypos=((ypos - int(qimgy / 2)))
+	qboxwidth=(6 + (qtext1.get_width()))
+	qboxhight=(uipoptextsize + qimgy + uipoptextsize + 20)
+	if qboxwidth<100:
+		qboxwidth=100
+	if qboxwidth<qimgx:
+		qboxwidth=(qimgx + 6)
+		#if image is wider than text, center xpos on image
+		xpos=((prevxpos - int(qimgx / 2)) - 3)
+	qbox=pygame.Surface((qboxwidth, qboxhight))
+	qbox.fill((bgcol))
+	boxtrace=screensurf.blit(qbox, (xpos, ypos))
+	if qimgflg==1:
+		screensurf.blit(qimg, ((xpos + 3), (ypos + 3)))
+	screensurf.blit(qtext1, ((xpos + 3), (ypos + qimgy + 3)))
+	pygame.draw.rect(screensurf, fgcol, boxtrace, 3)
+	if quyn==1:
+		qytext=qfnt.render("Yes", True, bgcol, fgcol)
+		qntext=qfnt.render("No", True, bgcol, fgcol)
+		yesclick=screensurf.blit(qytext, ((xpos + 10), (ypos + qimgy + 10 + uipoptextsize)))
+		noclick=screensurf.blit(qntext, ((xpos + 50), (ypos + qimgy + 10 + uipoptextsize)))
+		ref="none"
+		takekey="0"
+		clicksoundflg=0
+		soundname=0
+		if specialquit==1:
+			yesdat=clicktab(yesclick, "quitx", ref, keyid, takekey, clicksoundflg, soundname)
+			nodat=clicktab(noclick, "key", ref, nokey, takekey, clicksoundflg, soundname, quitab=1)
+		else:
+			yesdat=clicktab(yesclick, "key", ref, keyid, takekey, clicksoundflg, soundname, quitab=2)
+			nodat=clicktab(noclick, "key", ref, nokey, takekey, clicksoundflg, soundname, quitab=2)
+		retclicks=([])
+		retclicks.extend([yesdat])
+		retclicks.extend([nodat])
+
+		return(retclicks, quyn)
+	else:
+		qytext=qfnt.render("Ok", True, bgcol, fgcol)
+		yesclick=screensurf.blit(qytext, ((xpos + 10), (ypos + qimgy + 10 + uipoptextsize)))
+		ref="none"
+		takekey="0"
+		clicksoundflg=0
+		soundname=0
+		yesdat=clicktab(yesclick, "key", ref, keyid, takekey, clicksoundflg, soundname, quitab=2)
+		retclicks=([])
+		retclicks.extend([yesdat])
+		return(retclicks, quyn)
+
+	
+	
+
 timeoutlist=list()
 keybak=list(keylist)
 forksanitycheck=0
 forksanity=0
+cachepage=prevpage
 print "done. begin mainloop."
+uiquit=0
+qpopflg=0
+qmenuflg=0
 while quitflag==0:
 	huris=0
 	clicklist=list()
@@ -90,6 +240,7 @@ while quitflag==0:
 		
 		tree = ET.parse(curpage)
 		root = tree.getroot()
+		cachepage=prevpage
 		prevpage=curpage
 		coretag=root.find('core')
 		forktag=root.find('forks')
@@ -206,10 +357,55 @@ while quitflag==0:
 		masterkey=fork.attrib.get("keyid")
 		if masterkey in keylist:
 			keylist.remove(masterkey)
+			useprvpge=int(fork.attrib.get('useprev', '0'))
 			curpage=fork.attrib.get("page")
-			print ("iref: loading page '" + f.ref + "'")
+			if useprvpge==1 and cachepage!="NULL":
+				curpage=cachepage
+				
+			
+			print ("iref: loading page '" + curpage + "'")
 			pagejumpflag=1
 			break
+	for fork in forktag.findall("uipop"):
+		masterkey=fork.attrib.get("keyid")
+		msg=fork.attrib.get("msg")
+		qpopx=int(fork.attrib.get("x",(screensurf.get_rect().centerx)))
+		qpopy=int(fork.attrib.get("y",(screensurf.get_rect().centery)))
+		FGCOL=pygame.Color(fork.attrib.get("FGCOLOR", uifgcolorstr))
+		BGCOL=pygame.Color(fork.attrib.get("BGCOLOR", uibgcolorstr))
+		QFNTSIZE=int(fork.attrib.get("textsize", uitextsize))
+		uiimg=fork.attrib.get("img", "none")
+
+		if masterkey in keylist:
+			keylist.remove(masterkey)
+			ynflag=int(fork.attrib.get("ynflag", "0"))
+			if ynflag==1:
+				yeskey=fork.attrib.get("yeskey", "0")
+				nokey=fork.attrib.get("nokey", "0")
+				#poppost=qpop(msg, qpopx, qpopy, keyid=yeskey, nokey=nokey, quyn=1)
+				qpopdat=(msg, qpopx, qpopy, yeskey, nokey, 1, FGCOL, BGCOL, QFNTSIZE, uiimg)
+				qpopflg=1
+			else:
+				okkey=fork.attrib.get("okkey", "0")
+				#poppost=qpop(msg, qpopx, qpopy, keyid=okkey, quyn=0)
+				qpopdat=(msg, qpopx, qpopy, okkey, "0", 0, FGCOL, BGCOL, QFNTSIZE, uiimg)
+				qpopflg=1
+				
+	for fork in forktag.findall("uimenu"):
+		masterkey=fork.attrib.get("keyid")
+		qpopx=int(fork.attrib.get("x",(screensurf.get_rect().centerx)))
+		qpopy=int(fork.attrib.get("y",(screensurf.get_rect().centery)))
+		FGCOL=pygame.Color(fork.attrib.get("FGCOLOR", uifgcolorstr))
+		BGCOL=pygame.Color(fork.attrib.get("BGCOLOR", uibgcolorstr))
+		QFNTSIZE=int(fork.attrib.get("textsize", uitextsize))
+		if masterkey in keylist:
+			keylist.remove(masterkey)
+			itemlist=list()
+			for itmf in fork.findall("item"):
+				itmftab=uimenutab(itmf.attrib.get("con"), itmf.attrib.get("keyid", "0"), stay=int(itmf.attrib.get("stay", "0")), noact=int(itmf.attrib.get("noact", "0")))
+				itemlist.extend([itmftab])
+			qmenudat=(qpopx, qpopy, itemlist, FGCOL, BGCOL, QFNTSIZE)
+			qmenuflg=1
 	for fork in forktag.findall("timeout"):
 		masterkey=fork.attrib.get("keyid")
 		if masterkey in keylist:
@@ -446,6 +642,21 @@ while quitflag==0:
 				clicklist.extend([datstr])
 		#else:
 			#time.sleep(0.04)
+	
+	if qmenuflg==1:
+		#qmenudat=(qpopx, qpopy, itemlist, FGCOL, BGCOL, QFNTSIZE)
+		menpost=qmenu(qmenudat[0], qmenudat[1], qmenudat[2], fgcol=qmenudat[3], bgcol=qmenudat[4], uipoptextsize=qmenudat[5])
+		#qmenu(
+		clicklist=(menpost)
+	if qpopflg==1:
+		poppost=qpop(qpopdat[0], qpopdat[1], qpopdat[2], keyid=(qpopdat[3]), nokey=(qpopdat[4]), quyn=(qpopdat[5]), fgcol=(qpopdat[6]), bgcol=(qpopdat[7]), uipoptextsize=(qpopdat[8]), img=(qpopdat[9]))
+		clicklist=(poppost[0])
+	if uiquit==1:
+		quitxpos=screensurf.get_rect().centerx
+		quitypos=screensurf.get_rect().centery
+		poppost=qpop(uiquitmsg, quitxpos, quitypos, quyn=1, specialquit=1)
+		clicklist=(poppost[0])
+	
 	if clickfields==1:
 		for f in clicklist:
 			pygame.draw.rect(screensurf, cfcolor, f.box, 1)
@@ -454,8 +665,7 @@ while quitflag==0:
 		#print "nominal"
 		eventhappen=1
 		if event.type == QUIT:
-			quitflag=1
-			print ("quit: OS or WM quit")
+			uiquit=1
 			break
 		if event.type==MOUSEBUTTONDOWN:
 			#print "nominal2"
@@ -475,14 +685,25 @@ while quitflag==0:
 							keylist.remove(f.takekey)
 							#print keylist
 							keyprint()
+					
+						
 					if f.reftype=="iref":
 						curpage=f.ref
 						print ("iref: loading page '" + f.ref + "'")
 						break
 					if f.reftype=="quit":
+						uiquit=1
+						break
+					if f.reftype=="quitx":
 						print ("quit: onclick quit")
 						quitflag=1
 						break
+					if f.quitab==1:
+						uiquit=0
+					if f.quitab==2:
+						qpopflg=0
+					if f.quitab==3:
+						qmenuflg=0
 	if eventhappen==0:
 		time.sleep(0.1)
 

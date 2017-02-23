@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <conf>
 	<screen x="800" y="600"/>
-	<title base="Rhennevad Escape | " />
+	<title base="Rhennevad Escape | " icon="icon32.png" />
 	<beginref>prestart.xml</beginref>
 	<initkeys>
 		<k keyid="prestart"/>
 	</initkeys>
 	<debug debug="1" printkeys="1" clickfields="1" cfcolor="#FFFF00"/>
+	<ui>
+		<main BGCOLOR="#E6E1D0" FGCOLOR="#000000" textsize="24"/>
+		<quit MSG="Are you sure you want to quit?"/>
+	</ui>
 	<globalforks>
 	</globalforks>
 	<globalcore>
