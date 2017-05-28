@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<main>
+	<pageconf BGimg="1" BGM="0">
+		<title>Lost at Sea</title>
+		<BG>backdrop.jpg</BG>
+		<BGM>BGM1.ogg</BGM>
+	</pageconf>
+	<forks>
+		<pagejump keyid="beach1" page="ch1gate.xml"/>
+	</forks>
+	<core>
+		<img x="0" y="0">
+			<con>boatbunks2.jpg</con>
+			<act type="none"/>
+		</img>
+		<box x="521" y="307" sfxclick="0" sizex="243" sizey="53" COLOR="#FF0000" alpha="0" hoverkey="beach1hint" keyid="beach1">
+			<act type="key"/>
+		</box>
+		<text x="20" y="390" size="24" onkey="beach1hint" transp="1" FGCOLOR="#003300">Hop back to beach.</text>
+	</core>
+</main>
