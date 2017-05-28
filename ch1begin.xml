@@ -16,11 +16,11 @@
 		<timeout keyid="clickbed" seconds="4.0"/>
 		<timeout keyid="clickfox" seconds="4.0"/>
 		<!--periscope-->
-		<timeout keyid="peri1" seconds="0.09" post="peri2"/>
-		<timeout keyid="peri2" seconds="0.09" post="peri5"/>
-		<timeout keyid="peri3" seconds="0.6" post="peri4"/>
-		<timeout keyid="peri4" seconds="0.09" post="peri5"/>
-		<timeout keyid="peri5" seconds="0.09"/>
+		<timeout keyid="peri1" seconds="0.02" post="peri2"/>
+		<timeout keyid="peri2" seconds="0.5" post="peri5"/>
+		<timeout keyid="peri3" seconds="0.5" post="peri4"/>
+		<timeout keyid="peri4" seconds="0.02" post="peri5"/>
+		<timeout keyid="peri5" seconds="0.02"/>
 		<timeout keyid="peritext" seconds="2.0"/>
 
 		<batchset keyid="clickwindowB" set="1">

@@ -46,6 +46,10 @@
 			<con>opensea.jpg</con>
 			<act type="none"/>
 		</img>
+		<img x="0" y="175" hscroll="-8">
+			<con>intro1boat.png</con>
+			<act type="none"/>
+		</img>
 		<img x="90" y="30" onkey="mov1s6">
 			<con>title1.png</con>
 			<act type="none"/>

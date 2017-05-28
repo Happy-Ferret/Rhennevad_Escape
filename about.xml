@@ -20,7 +20,7 @@
 		<text x="10" y="35" size="20" transp="1" FGCOLOR="#000000">a point-and-click escape game built on the Desutezeoid Point and click engine.
 v1.0
 
-Powered by Desutezeoid v1.2.2
+Powered by Desutezeoid v1.4.1
 
 (c) 2015-2017 Thomas Leathers      
 
@@ -55,10 +55,23 @@ Voiced By: Thomas Leathers
 
 
 Narrator voiced by: Thomas Leathers</text>
+		<img x="0" y="-80" hscroll="9">
+			<con>clouds1.png</con>
+			<act type="none"/>
+		</img>
+		<img x="0" y="0" hscroll="5">
+			<con>clouds1.png</con>
+			<act type="none"/>
+		</img>
+		<img x="0" y="80" hscroll="3">
+			<con>clouds1.png</con>
+			<act type="none"/>
+		</img>
 		<img x="520" y="75">
 			<con>bunface1.png</con>
 			<act type="none"/>
 		</img>
+		
 		<img x="520" y="235">
 			<con>foxface1.png</con>
 			<act type="none"/>

@@ -2,7 +2,7 @@
 a point-and-click escape game built on the Desutezeoid Point and click engine.
 v1.0
 
-Powered by Desutezeoid v1.2.2
+Powered by Desutezeoid v1.4.0
  
 (c) 2015-2017 Thomas Leathers      
 

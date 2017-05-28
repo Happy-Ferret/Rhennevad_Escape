@@ -6,18 +6,38 @@
 	<initkeys>
 		<k keyid="prestart"/>
 	</initkeys>
+	<savkeys>
+	</savkeys>
 	<debug debug="1" printkeys="1" clickfields="1" cfcolor="#FFFF00"/>
 	<ui>
 		<main BGCOLOR="#E6E1D0" FGCOLOR="#000000" textsize="24"/>
 		<quit MSG="Are you sure you want to quit?"/>
 	</ui>
 	<globalforks>
+		<uimenu keyid="debugmenu" textsize="25">
+			<item con="debug menu" noact="1"/>
+			<item con="-------------------" noact="1"/>
+			<item con="DEV_JUMP to main menu." keyid="retmainmenu" stay="1"/>
+			<item con="DEV_JUMP to chapter select." keyid="retchaptsel" stay="1"/>
+			<item con="close menu"/>
+		</uimenu>
+		<pagejump keyid="retmainmenuX" page="prestart.xml"/>
+		<pagejump keyid="retchaptsel" page="chaptsel.xml"/>
+		<batchset keyid="retmainmenu" set="1">
+			<k keyid="retmainmenuX"/>
+			<k keyid="prestart"/>
+		</batchset>
+
 	</globalforks>
 	<globalcore>
+		<img x="0" y="0" mouseh="2" mousev="2" onkey="gretpaw">
+			<con>gretpaw.png</con>
+			<act type="none"/>
+		</img>
 		<!--Development shortcuts-->
-		<label x="650" y="550" size="25" transp="1" FGCOLOR="#000088">
-			<con>DEV_JUMP to chapter select.</con>
-			<act type="iref" ref="chaptsel.xml"/>
+		<label x="650" y="550" size="25" keyid="debugmenu" transp="1" FGCOLOR="#000088">
+			<con>Debug Menu</con>
+			<act type="key" ref="chaptsel.xml"/>
 		</label>
 	</globalcore>
 </conf>

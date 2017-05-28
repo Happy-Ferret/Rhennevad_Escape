@@ -9,7 +9,7 @@
 	</forks>
 	<core>
 		<label x="580" y="580" size="20" transp="1" FGCOLOR="#000000">
-			<con>Powered By: Desutezeoid v1.2.2</con>
+			<con>Powered By: Desutezeoid v1.4.0</con>
 			<act type="none"/>
 		</label>
 		<label x="20" y="390" size="25" transp="1" FGCOLOR="#000088">

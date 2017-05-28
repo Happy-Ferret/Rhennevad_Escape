@@ -8,15 +8,20 @@ import pygame
 import time
 import os
 import copy
+# load dzulib1 Desutezeoid support library
+import dzulib1 as dzulib
+
+
 from pygame.locals import *
 import xml.etree.ElementTree as ET
 pygame.display.init()
 pygame.font.init()
 pygame.mixer.init()
-print "Desutezeoid arbitrary point and click engine v1.2.2"
+print "Desutezeoid arbitrary point and click engine v1.4.2"
 print "parsing ENGSYSTEM.xml"
 conftree = ET.parse("ENGSYSTEM.xml")
 confroot = conftree.getroot()
+
 screentag=confroot.find("screen")
 uitag=confroot.find("ui")
 uicolorstag=uitag.find("main")
@@ -28,15 +33,44 @@ uitextsize=int(uicolorstag.attrib.get("textsize", "24"))
 
 uiquittag=uitag.find("quit")
 uiquitmsg=uiquittag.attrib.get("MSG", "Are you sure you want to quit?")
+#load main.sav. if IOError, Attempt to initalize main.sav, then try to load main.sav again.
+try:
+	mainsavtree = ET.parse("main.sav")
+	mainsavroot = mainsavtree.getroot()
+except IOError:
+	print ('main.sav not found.')
+	dzulib.initmainsave()
+	mainsavtree = ET.parse("main.sav")
+	mainsavroot = mainsavtree.getroot()
+	
+print "main.sav loaded"
 
+filedict={}
+
+
+def filelookup(filename):
+	global filedict
+	if filename in filedict:
+		return filedict[filename]
+	else:
+		imgret=pygame.image.load(filename)
+		filedict[filename]=imgret
+		return imgret
 
 
 print "populate keylist with null keyid, add any keys in initkeys."
 initkeystag=confroot.find("initkeys")
+savkeystag=confroot.find("savkeys")
+
 keylist=list(["0"])
 for initk in initkeystag.findall("k"):
 	if (initk.attrib.get("keyid"))!="0":
 		keylist.extend([initk.attrib.get("keyid")])
+print "add any keyids from main.sav"
+keysav=mainsavroot.find('keysav')
+for savk in keysav.findall("k"):
+	if (savk.attrib.get("keyid"))!="0":
+		keylist.extend([savk.attrib.get("keyid")])
 
 scrnx=int(screentag.attrib.get("x", "800"))
 scrny=int(screentag.attrib.get("y", "600"))
@@ -156,7 +190,7 @@ def qmenu(xpos, ypos, itemlist, fgcol=uifgcolor, bgcol=uibgcolor, uipoptextsize=
 def qpop(qmsg, xpos, ypos, keyid="0", nokey="0", quyn=0, specialquit=0, fgcol=uifgcolor, bgcol=uibgcolor, uipoptextsize=uitextsize, img="none"):
 	qfnt=pygame.font.SysFont(None, uipoptextsize)
 	if img!="none":
-		qimg=pygame.image.load(img)
+		qimg=filelookup(img)
 		qimgflg=1
 		qimgy=qimg.get_height()
 		qimgx=qimg.get_width()
@@ -253,6 +287,15 @@ while quitflag==0:
 		pageconf=root.find('pageconf')
 		pagetitle=(pageconf.find('title')).text
 		BGMstop=int(pageconf.attrib.get("BGMstop", "1"))
+		pagekeysflg=int(pageconf.attrib.get("pagekeys", "0"))
+		if pagekeysflg==1:
+			pagekeytag=root.find("pagekeys")
+			for pagekey in pagekeytag.findall("k"):
+				pagekeyid=pagekey.attrib.get("keyid")
+				if not pagekeyid in keylist:
+					keylist.extend([pagekeyid])
+					#print keylist
+					keyprint()
 		if BGMstop==1:
 			pygame.mixer.music.stop()
 		BGon=int(pageconf.attrib.get("BGimg", "0"))
@@ -270,11 +313,6 @@ while quitflag==0:
 		print "done. begin mainloop"
 	if BGon==1:
 		screensurf.blit(BG, (0, 0))
-	#print keylist
-	#print keybak
-	#if keylist!=keybak or forksanitycheck==1:
-	
-	#debugmsg("keyid change detected. reparsing forks.")
 	for fork in forktag.findall("ortrig"):
 		#print "batchtrig"
 		masterkey=fork.attrib.get("keyid")
@@ -344,6 +382,17 @@ while quitflag==0:
 						#print keylist
 						keyprint()
 				forksanity=1
+			elif toggpol=="2":
+				for subkey in fork.findall("k"):
+					subkeyid=subkey.attrib.get("keyid")
+					if not subkeyid in keylist:
+						keylist.extend([subkeyid])
+						#print keylist
+						keyprint()
+					elif subkeyid in keylist:
+						keylist.remove(subkeyid)
+						#print keylist
+						keyprint()
 			else:
 				for subkey in fork.findall("k"):
 					subkeyid=subkey.attrib.get("keyid")
@@ -366,6 +415,21 @@ while quitflag==0:
 			print ("iref: loading page '" + curpage + "'")
 			pagejumpflag=1
 			break
+	for fork in forktag.findall("music"):
+		masterkey=fork.attrib.get("keyid")
+		if masterkey in keylist:
+			keylist.remove(masterkey)
+			xmusstop=int(fork.attrib.get('stop', '0'))
+			xmusplay=int(fork.attrib.get('play', '0'))
+			if xmusstop==1:
+				pygame.mixer.music.stop()
+			elif xmusplay==1:
+				pygame.mixer.music.play(-1)
+			else:
+				mustrack=fork.attrib.get("track")
+				pygame.mixer.music.load(mustrack)
+				pygame.mixer.music.play(-1)
+			
 	for fork in forktag.findall("uipop"):
 		masterkey=fork.attrib.get("keyid")
 		msg=fork.attrib.get("msg")
@@ -466,6 +530,12 @@ while quitflag==0:
 		hoverkey=labref.attrib.get('hoverkey', "0")
 		clicksoundflg=int(labref.attrib.get('sfxclick', "0"))
 		soundname=(labref.attrib.get('sound', "0"))
+		vscrollval=int(labref.attrib.get('vscroll', "0"))
+		hscrollval=int(labref.attrib.get('hscroll', "0"))
+		vscfl=int(labref.attrib.get('vscINT', "0"))
+		hscfl=int(labref.attrib.get('hscINT', "0"))
+		folmousehflg=int(labref.attrib.get('mouseh', "0"))
+		folmousevflg=int(labref.attrib.get('mousev', "0"))
 		if ((onkey=="0" and offkey=="0") or (onkey=="0" and offkey not in keylist) or (onkey in keylist and offkey=="0") or (onkey in keylist and offkey not in keylist)):
 			imgx=int(labref.attrib.get("x"))
 			imgy=int(labref.attrib.get("y"))
@@ -474,7 +544,54 @@ while quitflag==0:
 			act=labref.find("act")
 			acttype=act.attrib.get("type", "none")
 			pos = pygame.mouse.get_pos()
-			imggfx=pygame.image.load(imgcon)
+			#scrolling operation init code. (variables are stored inside xml tree in ram)
+			if vscfl==0 and vscrollval!=0:
+				vscfl=1
+				labref.set('vscINT', "1")
+				labref.set('vscINTOF', str(vscrollval))
+			if hscfl==0 and hscrollval!=0:
+				hscfl=1
+				labref.set('hscINT', "1")
+				labref.set('hscINTOF', str(hscrollval))
+			vscoffset=int(labref.attrib.get('vscINTOF', "0"))
+			hscoffset=int(labref.attrib.get('hscINTOF', "0"))
+			imggfx=filelookup(imgcon)
+			if folmousehflg==1:
+				imgx=pos[0]
+			if folmousevflg==1:
+				imgy=pos[1]
+			if folmousehflg==2:
+				imgx=(pos[0] - int(imggfx.get_width() / 2))
+			if folmousevflg==2:
+				imgy=(pos[1] - int(imggfx.get_height() / 2))
+			if folmousehflg==3:
+				moux1=(abs(pos[0] - screensurf.get_width()) - int(imggfx.get_width() / 2))
+				imgx=moux1
+				#print "x" + str(imgx)
+			if folmousevflg==3:
+				mouy1=(abs(pos[1] - screensurf.get_height()) - int(imggfx.get_height() / 2))
+				imgy=mouy1
+				#print "y" + str(imgy)
+			if vscfl==1:
+				vscoffset += vscrollval
+				if imggfx.get_height()<vscoffset:
+					vscoffset=0
+				if imggfx.get_height()<(vscoffset * -1):
+					vscoffset=0
+				labref.set('vscINTOF', str(vscoffset))
+			if hscfl==1:
+				hscoffset += hscrollval
+				if imggfx.get_width()<hscoffset:
+					hscoffset=0
+				if imggfx.get_width()<(hscoffset * -1):
+					hscoffset=0
+				labref.set('hscINTOF', str(hscoffset))
+			#imggfx=pygame.image.load(imgcon)
+			
+			if hscfl==1:
+				imggfx=dzulib.hscroll(hscoffset, imggfx)
+			if vscfl==1:
+				imggfx=dzulib.vscroll(vscoffset, imggfx)
 			clickref=screensurf.blit(imggfx, (imgx, imgy))
 			if hoverkey!="0":
 				if clickref.collidepoint(pos)==1:
@@ -485,7 +602,7 @@ while quitflag==0:
 						keylist.remove(hoverkey)
 			if hovpic==1:
 				hovcon=(labref.find("altcon")).text
-				hovgfx=pygame.image.load(hovcon)
+				hovgfx=filelookup(hovcon)
 				if clickref.collidepoint(pos)==1:
 					clickref=screensurf.blit(hovgfx, (imgx, imgy))
 		
@@ -494,6 +611,10 @@ while quitflag==0:
 				if acttype=="iref":
 					ref=act.attrib.get("ref")
 					datstr=clicktab(clickref, "iref", ref, keyid, takekey, clicksoundflg, soundname)
+					clicklist.extend([datstr])
+				if acttype=="prev":
+					ref=act.attrib.get("ref")
+					datstr=clicktab(clickref, "prev", ref, keyid, takekey, clicksoundflg, soundname)
 					clicklist.extend([datstr])
 				if acttype=="quit":
 					ref=act.attrib.get("ref")
@@ -555,6 +676,10 @@ while quitflag==0:
 				if acttype=="iref":
 					ref=act.attrib.get("ref")
 					datstr=clicktab(clickref, "iref", ref, keyid, takekey, clicksoundflg, soundname)
+					clicklist.extend([datstr])
+				if acttype=="prev":
+					ref=act.attrib.get("ref")
+					datstr=clicktab(clickref, "prev", ref, keyid, takekey, clicksoundflg, soundname)
 					clicklist.extend([datstr])
 				if acttype=="quit":
 					ref=act.attrib.get("ref")
@@ -632,6 +757,10 @@ while quitflag==0:
 				ref=act.attrib.get("ref")
 				datstr=clicktab(clickref, "iref", ref, keyid, takekey, clicksoundflg, soundname)
 				clicklist.extend([datstr])
+			if acttype=="prev":
+				ref=act.attrib.get("ref")
+				datstr=clicktab(clickref, "prev", ref, keyid, takekey, clicksoundflg, soundname)
+				clicklist.extend([datstr])
 			if acttype=="quit":
 				ref=act.attrib.get("ref")
 				datstr=clicktab(clickref, "quit", ref, keyid, takekey, clicksoundflg, soundname)
@@ -640,8 +769,6 @@ while quitflag==0:
 				ref=act.attrib.get("ref")
 				datstr=clicktab(clickref, "key", ref, keyid, takekey, clicksoundflg, soundname)
 				clicklist.extend([datstr])
-		#else:
-			#time.sleep(0.04)
 	
 	if qmenuflg==1:
 		#qmenudat=(qpopx, qpopy, itemlist, FGCOL, BGCOL, QFNTSIZE)
@@ -691,6 +818,10 @@ while quitflag==0:
 						curpage=f.ref
 						print ("iref: loading page '" + f.ref + "'")
 						break
+					if f.reftype=="prev" and cachepage!="NULL":
+						curpage=cachepage
+						print ("prev: go to previous page")
+						break
 					if f.reftype=="quit":
 						uiquit=1
 						break
@@ -705,9 +836,21 @@ while quitflag==0:
 					if f.quitab==3:
 						qmenuflg=0
 	if eventhappen==0:
-		time.sleep(0.1)
+		time.sleep(0.01)
 
 		
 	pygame.display.update()
 	pygame.event.pump()
-	
+
+print "updating main.sav Please Wait."
+#clear keysav section.
+for savk in keysav:
+	keysav.remove(savk)
+#add existing tracked keyids as specified in savkeys in ENGSYSTEM.xml
+for ksav in savkeystag:
+	keyid=ksav.attrib.get('keyid')
+	if keyid!='0':
+		if keyid in keylist:
+			keysav.append(copy.deepcopy(ksav))
+mainsavtree.write('main.sav')
+print "Done."
