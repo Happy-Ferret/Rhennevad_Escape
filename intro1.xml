@@ -10,7 +10,7 @@
 		<timeout keyid="mov1s2" seconds="4.0" post="mov1s3X"/>
 		<timeout keyid="mov1s3" seconds="3.0" post="mov1s4X"/>
 		<timeout keyid="mov1s4" seconds="4.0" post="mov1s5X"/>
-		<timeout keyid="mov1s5" seconds="4.0" post="mov1s6"/>
+		<timeout keyid="mov1s5" seconds="4.0" post="mov1s6X"/>
 		<timeout keyid="mov1s6" seconds="6.0" post="mov1s7"/>
 		<pagejump keyid="mov1s7" page="ch1begin.xml"/>
 		<!--Speech Events-->
@@ -19,6 +19,7 @@
 		<sound keyid="mov1s3speech" sound="narintro1_3.ogg"/>
 		<sound keyid="mov1s4speech" sound="narintro1_4.ogg"/>
 		<sound keyid="mov1s5speech" sound="narintro1_5.ogg"/>
+		<sound keyid="titlemusreverb" sound="musictrack4-endreverb.ogg"/>
 		<!--batchset branches-->
 		<batchset keyid="beginmov1" set="1">
 			<k keyid="mov1s1"/>
@@ -39,6 +40,10 @@
 		<batchset keyid="mov1s5X" set="1">
 			<k keyid="mov1s5"/>
 			<k keyid="mov1s5speech"/>
+		</batchset>
+		<batchset keyid="mov1s6X" set="1">
+			<k keyid="mov1s6"/>
+			<k keyid="titlemusreverb"/>
 		</batchset>
 	</forks>
 	<core>
