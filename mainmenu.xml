@@ -28,8 +28,24 @@
 			<con>Quit</con>
 			<act type="quit"/>
 		</label>
+		<img x="0" y="100" hscroll="3">
+			<con>clouds1.png</con>
+			<act type="none"/>
+		</img>
+		<img x="393" y="118">
+			<con>titleoceanmask.png</con>
+			<act type="none"/>
+		</img>
+		<img x="0" y="266" hscroll="-20">
+			<con>intro1boat.png</con>
+			<act type="none"/>
+		</img>
+		<img x="0" y="280" hscroll="10">
+			<con>sharkscroll.png</con>
+			<act type="none"/>
+		</img>
 		<img x="0" y="0">
-			<con>titlescreen.jpg</con>
+			<con>titlescreen.png</con>
 			<act type="none"/>
 		</img>
 	</core>

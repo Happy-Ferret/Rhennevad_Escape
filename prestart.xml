@@ -3,15 +3,23 @@
 	<pageconf BGimg="1" BGM="1">
 		<title>Please wait</title>
 		<BG>backdrop.jpg</BG>
-		<BGM>BGM0.ogg</BGM>
+		<BGM>BGM2.ogg</BGM>
 	</pageconf>
 	<forks>
 		<timeout keyid="prestart" seconds="0.3" post="prestart1"/>
 		<pagejump keyid="prestart1" page="mainmenu.xml"/>
 	</forks>
 	<core>
+		<img x="0" y="100" hscroll="3">
+			<con>clouds1.png</con>
+			<act type="none"/>
+		</img>
+		<img x="393" y="118">
+			<con>titleoceanmask.png</con>
+			<act type="none"/>
+		</img>
 		<img x="0" y="0">
-			<con>titlescreen.jpg</con>
+			<con>titlescreen.png</con>
 			<act type="none"/>
 		</img>
 	</core>
