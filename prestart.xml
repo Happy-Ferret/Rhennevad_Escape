@@ -2,14 +2,18 @@
 <main>
 	<pageconf BGimg="1" BGM="1">
 		<title>Please wait</title>
-		<BG>backdrop.jpg</BG>
-		<BGM>BGM2.ogg</BGM>
+		<BG>backdrop2.jpg</BG>
+		<BGM>BGM1.ogg</BGM>
 	</pageconf>
 	<forks>
-		<timeout keyid="prestart" seconds="0.3" post="prestart1"/>
+		<timeout keyid="prestart" seconds="0.1" post="prestart1"/>
 		<pagejump keyid="prestart1" page="mainmenu.xml"/>
 	</forks>
 	<core>
+		<img x="393" y="118">
+			<con>skymask1.jpg</con>
+			<act type="none"/>
+		</img>
 		<img x="0" y="100" hscroll="3">
 			<con>clouds1.png</con>
 			<act type="none"/>

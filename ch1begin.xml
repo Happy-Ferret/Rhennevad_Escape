@@ -2,7 +2,7 @@
 <main>
 	<pageconf BGimg="1" BGM="0">
 		<title>Lost at Sea</title>
-		<BG>backdrop.jpg</BG>
+		<BG>backdrop2.jpg</BG>
 		<BGM>BGM1.ogg</BGM>
 	</pageconf>
 	<forks>
@@ -17,7 +17,7 @@
 		<timeout keyid="clickfox" seconds="4.0"/>
 		<!--periscope-->
 		<timeout keyid="peri1" seconds="0.02" post="peri2"/>
-		<timeout keyid="peri2" seconds="0.5" post="peri5"/>
+		<timeout keyid="peri2" seconds="0.02" post="peri3"/>
 		<timeout keyid="peri3" seconds="0.5" post="peri4"/>
 		<timeout keyid="peri4" seconds="0.02" post="peri5"/>
 		<timeout keyid="peri5" seconds="0.02"/>
@@ -64,21 +64,16 @@
 		<box x="373" y="18" sfxclick="1" sound="bunsunnyday.ogg" sizex="87" sizey="45" COLOR="#FF0000" alpha="0" hoverkey="windowhintB" keyid="clickwindow">
 			<act type="key"/>
 		</box>
-		<box x="569" y="4" sfxclick="1" sound="bunolddrake1.ogg" sizex="44" sizey="41" COLOR="#FF0000" alpha="0" hoverkey="foxhint" keyid="clickfox">
-			<act type="key"/>
-		</box>
 		<box x="533" y="57" sizex="265" sizey="150" COLOR="#FF0000" alpha="0" hoverkey="beachhint" keyid="beach1">
 			<act type="key"/>
 		</box>
 		<!--hover hints-->
 		<text x="20" y="390" size="24" onkey="bedhint" transp="1" FGCOLOR="#003300">Look at bed.</text>
 		<text x="20" y="390" size="24" onkey="windowhint" transp="1" FGCOLOR="#003300">Look out window.</text>
-		<text x="20" y="390" size="24" onkey="foxhint" transp="1" FGCOLOR="#003300">Look at Drake Temalson.</text>
 		<text x="20" y="390" size="24" onkey="beachhint" transp="1" FGCOLOR="#003300">Hop to beach.</text>
 		<!--bunspeech-->
 		<text x="20" y="390" size="24" onkey="clickbed" BGCOLOR="#000000" FGCOLOR="#FFAAAA">I was sound asleep, next thing i know im shipwrecked.</text>
 		<text x="20" y="390" size="24" onkey="clickwindow" BGCOLOR="#000000" FGCOLOR="#FFAAAA">On the bright side, at least its a sunny day.</text>
-		<text x="20" y="390" size="24" onkey="clickfox" BGCOLOR="#000000" FGCOLOR="#FFAAAA">Oh, i was wondering where old Drake got off to...</text>
 		<text x="20" y="390" size="24" onkey="peritext" BGCOLOR="#000000" FGCOLOR="#FFAAAA">I feel like I am being watched.</text>
 	</core>
 </main>

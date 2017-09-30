@@ -2,7 +2,7 @@
 <main>
 	<pageconf BGimg="1" BGM="0">
 		<title>Chapter 1 Intro</title>
-		<BG>backdrop.jpg</BG>
+		<BG>backdrop2.jpg</BG>
 		<BGM>BGM1.ogg</BGM>
 	</pageconf>
 	<forks>
@@ -51,7 +51,7 @@
 			<con>opensea.jpg</con>
 			<act type="none"/>
 		</img>
-		<img x="0" y="175" hscroll="-8">
+		<img x="0" y="175" hscroll="-4">
 			<con>intro1boat.png</con>
 			<act type="none"/>
 		</img>

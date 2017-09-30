@@ -2,7 +2,7 @@
 <main>
 	<pageconf BGimg="1" BGM="0">
 		<title>Lost at Sea</title>
-		<BG>backdrop.jpg</BG>
+		<BG>backdrop2.jpg</BG>
 		<BGM>BGM1.ogg</BGM>
 	</pageconf>
 	<forks>

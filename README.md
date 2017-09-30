@@ -2,7 +2,7 @@
 a point-and-click escape game built on the Desutezeoid Point and click engine.
 v1.0
 
-Powered by Desutezeoid v1.4.0
+Powered by Desutezeoid v1.5.1
  
 (c) 2015-2017 Thomas Leathers      
 
@@ -19,3 +19,11 @@ GNU General Public License for more details.
        
 You should have received a copy of the GNU General Public License
 along with Rhennevad Escape.  If not, see <http://www.gnu.org/licenses/>.
+
+all images and other media content, unless otherwise noted,
+are licensed under the Creative Commons Attribution-ShareAlike 4.0
+International License. To view a copy of this license, visit
+http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to
+Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+Image and other media content created by, (unless otherwise noted below) Thomas Leathers.

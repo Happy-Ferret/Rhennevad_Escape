@@ -30,14 +30,15 @@
 
 	</globalforks>
 	<globalcore>
-		<img x="0" y="0" mouseh="2" mousev="2" onkey="gretpaw">
-			<con>gretpaw.png</con>
-			<act type="none"/>
-		</img>
+		
 		<!--Development shortcuts-->
 		<label x="650" y="550" size="25" keyid="debugmenu" transp="1" FGCOLOR="#000088">
 			<con>Debug Menu</con>
 			<act type="key" ref="chaptsel.xml"/>
 		</label>
+		<img x="0" y="0" mouseh="2" mousev="2" onkey="gretpaw">
+			<con>gretpaw.png</con>
+			<act type="none"/>
+		</img>
 	</globalcore>
 </conf>
