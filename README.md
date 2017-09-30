@@ -4,7 +4,7 @@ v1.0
 
 Powered by Desutezeoid v1.5.1
  
-(c) 2015-2017 Thomas Leathers      
+Copyright (c) 2015-2017 Thomas Leathers      
 
 
 Rhennevad Escape is free software: you can redistribute it and/or modify
