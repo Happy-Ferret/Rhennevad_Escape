@@ -2,7 +2,7 @@
 <main>
 	<pageconf BGimg="1" BGM="1">
 		<title>Please wait</title>
-		<BG>backdrop2.jpg</BG>
+		<BG>backdrop.jpg</BG>
 		<BGM>BGM1.ogg</BGM>
 	</pageconf>
 	<forks>

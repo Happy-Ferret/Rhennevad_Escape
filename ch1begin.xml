@@ -2,7 +2,7 @@
 <main>
 	<pageconf BGimg="1" BGM="0">
 		<title>Lost at Sea</title>
-		<BG>backdrop2.jpg</BG>
+		<BG>backdrop.jpg</BG>
 		<BGM>BGM1.ogg</BGM>
 	</pageconf>
 	<forks>
@@ -34,46 +34,46 @@
 			<con>boatbunks1.jpg</con>
 			<act type="none"/>
 		</img>
-		<img x="310" y="31" onkey="peri1" >
+		<img x="390" y="41" onkey="peri1" >
 			<con>periscopef1.png</con>
 			<act type="none"/>
 		</img>
-		<img x="310" y="31" onkey="peri2">
+		<img x="390" y="41" onkey="peri2">
 			<con>periscopef2.png</con>
 			<act type="none"/>
 		</img>
-		<img x="310" y="31" onkey="peri5" >
+		<img x="390" y="41" onkey="peri5" >
 			<con>periscopef1.png</con>
 			<act type="none"/>
 		</img>
-		<img x="310" y="31" onkey="peri4">
+		<img x="390" y="41" onkey="peri4">
 			<con>periscopef2.png</con>
 			<act type="none"/>
 		</img>
-		<img x="310" y="31" onkey="peri3">
+		<img x="390" y="41" onkey="peri3">
 			<con>periscopef3.png</con>
 			<act type="none"/>
 		</img>
 		<!--Clickable objects-->
-		<box x="100" y="78" sfxclick="1" sound="bunsoundasleep.ogg" sizex="142" sizey="98" COLOR="#FF0000" alpha="0" hoverkey="bedhint" keyid="clickbed">
+		<box x="128" y="98" sfxclick="1" sound="bunsoundasleep.ogg" sizex="173" sizey="117" COLOR="#FF0000" alpha="0" hoverkey="bedhint" keyid="clickbed">
 			<act type="key"/>
 		</box>
-		<box x="266" y="15" sfxclick="1" sound="bunbeingwatched.ogg" sizex="87" sizey="45" COLOR="#FF0000" alpha="0" hoverkey="windowhintA" keyid="clickwindowB">
+		<box x="333" y="18" sfxclick="1" sound="bunbeingwatched.ogg" sizex="107" sizey="58" COLOR="#FF0000" alpha="0" hoverkey="windowhintA" keyid="clickwindowB">
 			<act type="key"/>
 		</box>
-		<box x="373" y="18" sfxclick="1" sound="bunsunnyday.ogg" sizex="87" sizey="45" COLOR="#FF0000" alpha="0" hoverkey="windowhintB" keyid="clickwindow">
+		<box x="467" y="23" sfxclick="1" sound="bunsunnyday.ogg" sizex="108" sizey="56" COLOR="#FF0000" alpha="0" hoverkey="windowhintB" keyid="clickwindow">
 			<act type="key"/>
 		</box>
-		<box x="533" y="57" sizex="265" sizey="150" COLOR="#FF0000" alpha="0" hoverkey="beachhint" keyid="beach1">
+		<box x="679" y="63" sizex="226" sizey="155" COLOR="#FF0000" alpha="0" hoverkey="beachhint" keyid="beach1">
 			<act type="key"/>
 		</box>
 		<!--hover hints-->
-		<text x="20" y="390" size="24" onkey="bedhint" transp="1" FGCOLOR="#003300">Look at bed.</text>
-		<text x="20" y="390" size="24" onkey="windowhint" transp="1" FGCOLOR="#003300">Look out window.</text>
-		<text x="20" y="390" size="24" onkey="beachhint" transp="1" FGCOLOR="#003300">Hop to beach.</text>
+		<text x="20" y="475" size="24" onkey="bedhint" transp="1" FGCOLOR="#003300">Look at bed.</text>
+		<text x="20" y="475" size="24" onkey="windowhint" transp="1" FGCOLOR="#003300">Look out window.</text>
+		<text x="20" y="475" size="24" onkey="beachhint" transp="1" FGCOLOR="#003300">Hop to beach.</text>
 		<!--bunspeech-->
-		<text x="20" y="390" size="24" onkey="clickbed" BGCOLOR="#000000" FGCOLOR="#FFAAAA">I was sound asleep, next thing i know im shipwrecked.</text>
-		<text x="20" y="390" size="24" onkey="clickwindow" BGCOLOR="#000000" FGCOLOR="#FFAAAA">On the bright side, at least its a sunny day.</text>
-		<text x="20" y="390" size="24" onkey="peritext" BGCOLOR="#000000" FGCOLOR="#FFAAAA">I feel like I am being watched.</text>
+		<text x="20" y="475" size="24" onkey="clickbed" BGCOLOR="#000000" FGCOLOR="#FFAAAA">I was sound asleep, next thing i know im shipwrecked.</text>
+		<text x="20" y="475" size="24" onkey="clickwindow" BGCOLOR="#000000" FGCOLOR="#FFAAAA">On the bright side, at least its a sunny day.</text>
+		<text x="20" y="475" size="24" onkey="peritext" BGCOLOR="#000000" FGCOLOR="#FFAAAA">I feel like I am being watched.</text>
 	</core>
 </main>

@@ -2,28 +2,13 @@
 <main>
 	<pageconf BGimg="1" BGMstop="0" BGM="0">
 		<title>Main Menu</title>
-		<BG>backdrop2.jpg</BG>
+		<BG>backdrop.jpg</BG>
 		<BGM>BGM1.ogg</BGM>
 	</pageconf>
 	<forks>
 	</forks>
 	<core>
-		<label x="10" y="580" size="20" transp="1" FGCOLOR="#000000">
-			<con>This game is a work-in-progress!</con>
-			<act type="none"/>
-		</label>
-		<label x="20" y="390" size="25" transp="1" FGCOLOR="#000088">
-			<con>Choose Chapter</con>
-			<act type="iref" ref="chaptsel.xml"/>
-		</label>
-		<label x="20" y="420" size="25" transp="1" FGCOLOR="#000088">
-			<con>About</con>
-			<act type="iref" ref="about.xml"/>
-		</label>
-		<label x="20" y="450" size="25" transp="1" FGCOLOR="#000088">
-			<con>Quit</con>
-			<act type="quit"/>
-		</label>
+		
 		<img x="393" y="118">
 			<con>skymask1.jpg</con>
 			<act type="none"/>
@@ -48,5 +33,21 @@
 			<con>titlescreen.png</con>
 			<act type="none"/>
 		</img>
+		<label x="10" y="470" size="20" transp="1" FGCOLOR="#000000">
+			<con>This game is a work-in-progress!</con>
+			<act type="none"/>
+		</label>
+		<label x="815" y="60" size="25" transp="1" FGCOLOR="#000088">
+			<con>Choose Chapter</con>
+			<act type="iref" ref="chaptsel.xml"/>
+		</label>
+		<label x="815" y="85" size="25" transp="1" FGCOLOR="#000088">
+			<con>About</con>
+			<act type="iref" ref="about.xml"/>
+		</label>
+		<label x="815" y="110" size="25" transp="1" FGCOLOR="#000088">
+			<con>Quit</con>
+			<act type="quit"/>
+		</label>
 	</core>
 </main>

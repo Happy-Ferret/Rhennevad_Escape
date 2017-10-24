@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<main>
+	<pageconf BGimg="0" BGM="0" BGMstop="0">
+		<title>Lost at Sea</title>
+		<BG>backdrop.jpg</BG>
+		<BGM>BGM1.ogg</BGM>
+	</pageconf>
+	<forks>
+	</forks>
+	<core>
+		<!--Test panoramic screen effect. an effect that might be used in Rhennevad Escape.
+		Note: remember the dual axis panoramic backgrounds need to be 2000x1000 not 2000x910!-->
+		<img x="0" y="0" mouseh="3" mousev="3">
+			<con>testpan1.jpg</con>
+			<act type="none"/>
+		</img>
+		<!--note: x, y, and width/height areas of stationary click boxes must be halfed...-->
+		<box x="405" y="213" sfxclick="0" sizex="200" sizey="66" COLOR="#FF0000" alpha="0" hoverkey="panhovertest" keyid="panclicktest">
+			<act type="key"/>
+		</box>
+	</core>
+</main>

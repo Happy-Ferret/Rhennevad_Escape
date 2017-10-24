@@ -2,7 +2,7 @@
 <main>
 	<pageconf BGimg="1" BGM="0">
 		<title>Lost at Sea</title>
-		<BG>backdrop2.jpg</BG>
+		<BG>backdrop.jpg</BG>
 		<BGM>BGM1.ogg</BGM>
 	</pageconf>
 	<forks>
@@ -13,9 +13,9 @@
 			<con>boatbunks2.jpg</con>
 			<act type="none"/>
 		</img>
-		<box x="521" y="307" sfxclick="0" sizex="243" sizey="53" COLOR="#FF0000" alpha="0" hoverkey="beach1hint" keyid="beach1">
+		<box x="683" y="391" sfxclick="0" sizex="270" sizey="64" COLOR="#FF0000" alpha="0" hoverkey="beach1hint" keyid="beach1">
 			<act type="key"/>
 		</box>
-		<text x="20" y="390" size="24" onkey="beach1hint" transp="1" FGCOLOR="#003300">Hop back to beach.</text>
+		<text x="20" y="475" size="24" onkey="beach1hint" transp="1" FGCOLOR="#003300">Hop back to beach.</text>
 	</core>
 </main>

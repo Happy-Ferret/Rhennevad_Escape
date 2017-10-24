@@ -2,7 +2,7 @@
 <main>
 	<pageconf BGimg="1" BGMstop="0" BGM="0">
 		<title>About</title>
-		<BG>backdrop2.jpg</BG>
+		<BG>backdrop.jpg</BG>
 		<BGM>BGM1.ogg</BGM>
 	</pageconf>
 	<forks>
@@ -13,11 +13,11 @@
 			<act type="none"/>
 		</img>
 		<img x="0" y="0" hscroll="5">
-			<con>clouds1.png</con>
+			<con>clouds2.png</con>
 			<act type="none"/>
 		</img>
 		<img x="0" y="80" hscroll="3">
-			<con>clouds1.png</con>
+			<con>clouds2.png</con>
 			<act type="none"/>
 		</img>
 		<img x="520" y="75">
@@ -33,7 +33,7 @@
 			<con>Rhennevad Escape</con>
 			<act type="none"/>
 		</label>
-		<label x="20" y="430" size="25" transp="1" FGCOLOR="#000088">
+		<label x="20" y="475" size="25" transp="1" FGCOLOR="#000088">
 			<con>Main Menu</con>
 			<act type="iref" ref="mainmenu.xml"/>
 		</label>
@@ -57,7 +57,6 @@ GNU General Public License for more details.
        
 You should have received a copy of the GNU General Public License
 along with Rhennevad Escape.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
-
 
 see README.md for licensing of media.</text>
 

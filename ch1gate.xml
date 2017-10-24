@@ -2,7 +2,7 @@
 <main>
 	<pageconf BGimg="1" BGM="0">
 		<title>Lost at Sea</title>
-		<BG>backdrop2.jpg</BG>
+		<BG>backdrop.jpg</BG>
 		<BGM>BGM1.ogg</BGM>
 	</pageconf>
 	<forks>
@@ -14,13 +14,14 @@
 			<con>beach1.jpg</con>
 			<act type="none"/>
 		</img>
-		<box x="741" y="134" sfxclick="0" sizex="59" sizey="232" COLOR="#FF0000" alpha="0" hoverkey="bunks1hint" keyid="bunks1">
+		
+		<box x="927" y="156" sfxclick="0" sizex="73" sizey="263" COLOR="#FF0000" alpha="0" hoverkey="bunks1hint" keyid="bunks1">
 			<act type="key"/>
 		</box>
-		<box x="0" y="211" sfxclick="0" sizex="83" sizey="89" COLOR="#FF0000" alpha="0" hoverkey="bunks2hint" keyid="bunks2">
+		<box x="0" y="205" sfxclick="0" sizex="111" sizey="166" COLOR="#FF0000" alpha="0" hoverkey="bunks2hint" keyid="bunks2">
 			<act type="key"/>
 		</box>
-		<text x="20" y="390" size="24" onkey="bunks1hint" transp="1" FGCOLOR="#003300">Hop back to Gretra's half.</text>
-		<text x="20" y="390" size="24" onkey="bunks2hint" transp="1" FGCOLOR="#003300">Hop to Drake's half.</text>
+		<text x="20" y="475" size="24" onkey="bunks1hint" transp="1" FGCOLOR="#003300">Hop back to Gretra's half.</text>
+		<text x="20" y="475" size="24" onkey="bunks2hint" transp="1" FGCOLOR="#003300">Hop to Drake's half.</text>
 	</core>
 </main>

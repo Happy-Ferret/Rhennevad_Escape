@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <conf>
-	<screen x="800" y="600"/>
+	<screen x="1000" y="500"/>
 	<title base="Rhennevad Escape | " icon="icon32.png" />
 	<beginref>prestart.xml</beginref>
 	<initkeys>
 		<k keyid="prestart"/>
+		<!--<k keyid="gretpaw"/>-->
 	</initkeys>
 	<savkeys>
 	</savkeys>
@@ -19,10 +20,14 @@
 			<item con="-------------------" noact="1"/>
 			<item con="DEV_JUMP to main menu." keyid="retmainmenu" stay="1"/>
 			<item con="DEV_JUMP to chapter select." keyid="retchaptsel" stay="1"/>
+			<item con="DEV_JUMP to ch. 1 (skip intro)" keyid="retchpt1" stay="1"/>
+			<item con="test pano 1" keyid="retpan1" stay="1"/>
 			<item con="close menu"/>
 		</uimenu>
 		<pagejump keyid="retmainmenuX" page="prestart.xml"/>
 		<pagejump keyid="retchaptsel" page="chaptsel.xml"/>
+		<pagejump keyid="retchpt1" page="ch1begin.xml"/>
+		<pagejump keyid="retpan1" page="testpan1.xml"/>
 		<batchset keyid="retmainmenu" set="1">
 			<k keyid="retmainmenuX"/>
 			<k keyid="prestart"/>
@@ -32,7 +37,7 @@
 	<globalcore>
 		
 		<!--Development shortcuts-->
-		<label x="650" y="550" size="25" keyid="debugmenu" transp="1" FGCOLOR="#000088">
+		<label x="650" y="475" size="25" keyid="debugmenu" transp="1" FGCOLOR="#000088">
 			<con>Debug Menu</con>
 			<act type="key" ref="chaptsel.xml"/>
 		</label>

@@ -2,7 +2,7 @@
 <main>
 	<pageconf BGimg="1" BGM="0">
 		<title>Chapter 1 Intro</title>
-		<BG>backdrop2.jpg</BG>
+		<BG>backdrop.jpg</BG>
 		<BGM>BGM1.ogg</BGM>
 	</pageconf>
 	<forks>
@@ -51,19 +51,19 @@
 			<con>opensea.jpg</con>
 			<act type="none"/>
 		</img>
-		<img x="0" y="175" hscroll="-4">
+		<img x="0" y="220" hscroll="-4">
 			<con>intro1boat.png</con>
 			<act type="none"/>
 		</img>
-		<img x="90" y="30" onkey="mov1s6">
+		<img x="190" y="30" onkey="mov1s6">
 			<con>title1.png</con>
 			<act type="none"/>
 		</img>
-		<text x="20" y="390" size="24" onkey="mov1s1" transp="1" FGCOLOR="#000000">The open sea...</text>
-		<text x="20" y="390" size="24" onkey="mov1s2" transp="1" FGCOLOR="#000000">How Calm. How Relaxing.</text>
-		<text x="20" y="390" size="24" onkey="mov1s3" transp="1" FGCOLOR="#000000">However...</text>
-		<text x="20" y="390" size="24" onkey="mov1s4" transp="1" FGCOLOR="#000000">With every journey across its waters...</text>
-		<text x="20" y="390" size="24" onkey="mov1s5" transp="1" FGCOLOR="#000000">Comes risks...</text>
+		<text x="20" y="475" size="24" onkey="mov1s1" transp="1" FGCOLOR="#000000">The open sea...</text>
+		<text x="20" y="475" size="24" onkey="mov1s2" transp="1" FGCOLOR="#000000">How Calm. How Relaxing.</text>
+		<text x="20" y="475" size="24" onkey="mov1s3" transp="1" FGCOLOR="#000000">However...</text>
+		<text x="20" y="475" size="24" onkey="mov1s4" transp="1" FGCOLOR="#000000">With every journey across its waters...</text>
+		<text x="20" y="475" size="24" onkey="mov1s5" transp="1" FGCOLOR="#000000">Comes risks...</text>
 		
 	</core>
 </main>

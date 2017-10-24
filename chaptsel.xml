@@ -2,37 +2,13 @@
 <main>
 	<pageconf BGimg="1" BGMstop="0" BGM="0">
 		<title>Chapter Select</title>
-		<BG>backdrop2.jpg</BG>
+		<BG>backdrop.jpg</BG>
 		<BGM>BGM1.ogg</BGM>
 	</pageconf>
 	<forks>
 	</forks>
 	<core>
-		<label x="20" y="390" size="25" transp="1" FGCOLOR="#000088">
-			<con>Main Menu</con>
-			<act type="iref" ref="mainmenu.xml"/>
-		</label>
-		<label x="20" y="420" size="25" transp="1" keyid="beginmov1" FGCOLOR="#000088">
-			<con>Chapter 1: Lost at Sea.</con>
-			<act type="iref" ref="intro1.xml"/>
-		</label>
-		<label x="20" y="450" size="25" transp="1" FGCOLOR="#000088">
-			<con>Chapter 2: </con>
-			<act type="none"/>
-		</label>
-		<label x="20" y="480" size="25" transp="1" FGCOLOR="#000088">
-			<con>Chapter 3:</con>
-			<act type="none"/>
-		</label>
-		<label x="20" y="510" size="25" transp="1" FGCOLOR="#000088">
-			<con>Chapter 4:</con>
-			<act type="none"/>
-		</label>
-		<!--Development shortcut menu items.-->
-		<label x="280" y="420" size="25" transp="1" FGCOLOR="#000088">
-			<con>[skip intro]</con>
-			<act type="iref" ref="ch1begin.xml"/>
-		</label>
+		
 		<img x="393" y="118">
 			<con>skymask1.jpg</con>
 			<act type="none"/>
@@ -57,5 +33,30 @@
 			<con>titlescreen.png</con>
 			<act type="none"/>
 		</img>
+		<label x="815" y="60" size="25" transp="1" FGCOLOR="#000088">
+			<con>Main Menu</con>
+			<act type="iref" ref="mainmenu.xml"/>
+		</label>
+		<label x="815" y="85" size="25" transp="1" keyid="beginmov1" FGCOLOR="#000088">
+			<con>1: Lost at Sea.</con>
+			<act type="iref" ref="intro1.xml"/>
+		</label>
+		<label x="815" y="110" size="25" transp="1" FGCOLOR="#000088">
+			<con>2: </con>
+			<act type="none"/>
+		</label>
+		<label x="815" y="135" size="25" transp="1" FGCOLOR="#000088">
+			<con>3:</con>
+			<act type="none"/>
+		</label>
+		<label x="815" y="160" size="25" transp="1" FGCOLOR="#000088">
+			<con>4:</con>
+			<act type="none"/>
+		</label>
+		<!--Development shortcut menu items.-->
+		<!--<label x="280" y="420" size="25" transp="1" FGCOLOR="#000088">
+			<con>[skip intro]</con>
+			<act type="iref" ref="ch1begin.xml"/>
+		</label>-->
 	</core>
 </main>
