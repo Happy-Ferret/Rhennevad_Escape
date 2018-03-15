@@ -2,9 +2,13 @@
 a point-and-click escape game built on the Desutezeoid Point and click engine.
 v1.0
 
-Powered by Desutezeoid v1.5.1
+-----
+Built on: Desutezeoid v1.7.0
+see DZU_README.md for licensing, and a list of files covered,
+see DZU_contributors.md for a list of contributors.
+-----
  
-Copyright (c) 2015-2017 Thomas Leathers      
+Copyright (c) 2015-2018 Thomas Leathers      
 
 
 Rhennevad Escape is free software: you can redistribute it and/or modify

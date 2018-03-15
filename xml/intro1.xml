@@ -51,7 +51,7 @@
 			<con>opensea.jpg</con>
 			<act type="none"/>
 		</img>
-		<img x="0" y="220" hscroll="-4">
+		<img x="0" y="220" hscroll="-1.9">
 			<con>intro1boat.png</con>
 			<act type="none"/>
 		</img>

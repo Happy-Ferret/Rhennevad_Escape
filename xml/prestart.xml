@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<main>
+	<pageconf BGimg="1" BGM="1">
+		<title>Please wait</title>
+		<BG>titlescreen.jpg</BG>
+		<BGM>BGM1.ogg</BGM>
+	</pageconf>
+	<forks>
+		<timeout keyid="prestart" seconds="0.1" post="prestart1"/>
+		<pagejump keyid="prestart1" page="mainmenu.xml"/>
+	</forks>
+	<core>
+	</core>
+</main>

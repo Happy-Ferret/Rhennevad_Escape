@@ -9,7 +9,9 @@
 	</initkeys>
 	<savkeys>
 	</savkeys>
-	<debug debug="1" printkeys="1" clickfields="1" cfcolor="#FFFF00"/>
+	<plugcnf>
+	</plugcnf>
+	<debug debug="1" printkeys="1" clickfields="1" cfcolor="#FFFF00"  skipautoload="0"/>
 	<ui>
 		<main BGCOLOR="#E6E1D0" FGCOLOR="#000000" textsize="24"/>
 		<quit MSG="Are you sure you want to quit?"/>

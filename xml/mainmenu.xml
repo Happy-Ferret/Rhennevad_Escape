@@ -2,37 +2,12 @@
 <main>
 	<pageconf BGimg="1" BGMstop="0" BGM="0">
 		<title>Main Menu</title>
-		<BG>backdrop.jpg</BG>
+		<BG>titlescreen.jpg</BG>
 		<BGM>BGM1.ogg</BGM>
 	</pageconf>
 	<forks>
 	</forks>
 	<core>
-		
-		<img x="393" y="118">
-			<con>skymask1.jpg</con>
-			<act type="none"/>
-		</img>
-		<img x="0" y="100" hscroll="3">
-			<con>clouds1.png</con>
-			<act type="none"/>
-		</img>
-		<img x="393" y="118">
-			<con>titleoceanmask.png</con>
-			<act type="none"/>
-		</img>
-		<img x="0" y="266" hscroll="-10">
-			<con>intro1boat.png</con>
-			<act type="none"/>
-		</img>
-		<img x="0" y="280" hscroll="5">
-			<con>sharkscroll.png</con>
-			<act type="none"/>
-		</img>
-		<img x="0" y="0">
-			<con>titlescreen.png</con>
-			<act type="none"/>
-		</img>
 		<label x="10" y="470" size="20" transp="1" FGCOLOR="#000000">
 			<con>This game is a work-in-progress!</con>
 			<act type="none"/>
